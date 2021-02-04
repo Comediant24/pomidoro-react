@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Pomodoro = () => {
+const Pomodoro = ({ minutes, seconds }) => {
   return (
     <PomodoroWrapper>
-      <Timer>25:00</Timer>
+      <Timer>{`${minutes}:${seconds}`}</Timer>
     </PomodoroWrapper>
   );
 };

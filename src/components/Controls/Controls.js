@@ -1,14 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../Button/Button';
-import TITLE_BUTTON from '../../config/config';
+import { TITLE_BUTTON } from '../../config/config';
 
-const Controls = () => {
+const Controls = ({
+  isRunning,
+  onStartClick,
+  onResetClick,
+  onPauseClick,
+  onEditClick,
+}) => {
   return (
     <ControlsWrapper>
-      {TITLE_BUTTON.map((title) => (
-        <ControlsButton title={title} key={title} />
-      ))}
+      {!isRunning && (
+        <ControlsButton onButtonClick={onStartClick} title={TITLE_BUTTON[0]} />
+      )}
+      {isRunning && (
+        <ControlsButton onButtonClick={onPauseClick} title={TITLE_BUTTON[1]} />
+      )}
+      <ControlsButton onButtonClick={onResetClick} title={TITLE_BUTTON[2]} />
+      <ControlsButton onButtonClick={onEditClick} title={TITLE_BUTTON[3]} />
     </ControlsWrapper>
   );
 };
@@ -28,4 +39,5 @@ const ControlsButton = styled(Button)`
   border: 2px solid black;
   font-size: 24px;
   text-transform: capitalize;
+  min-width: 100px;
 `;

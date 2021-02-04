@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = ({ className, title }) => {
-  return <ButtonWrapper className={className}>{title}</ButtonWrapper>;
+const Button = ({ onButtonClick, className, title }) => {
+  return (
+    <ButtonWrapper onClick={onButtonClick} className={className}>
+      {title}
+    </ButtonWrapper>
+  );
 };
 
 export default Button;

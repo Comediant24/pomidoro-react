@@ -1,3 +1,2 @@
-const TITLE_BUTTON = ['start', 'reset', 'break', 'edit'];
-
-export default TITLE_BUTTON;
+export const CURRENT_TIME = 25;
+export const TITLE_BUTTON = ['start', 'break', 'reset', 'edit'];
