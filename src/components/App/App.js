@@ -27,5 +27,9 @@ const Wrapper = styled.div`
 
 const AppContainer = styled.div`
   max-width: 800px;
+  padding: 20px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 `;

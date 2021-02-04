@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from '../Button/Button';
+import TITLE_BUTTON from '../../config/config';
 
 const Controls = () => {
   return (
     <ControlsWrapper>
-      <ControlsButton>Start</ControlsButton>
-      <ControlsButton>Reset</ControlsButton>
-      <ControlsButton>Break</ControlsButton>
-      <ControlsButton>Edit</ControlsButton>
+      {TITLE_BUTTON.map((title) => (
+        <ControlsButton title={title} key={title} />
+      ))}
     </ControlsWrapper>
   );
 };
@@ -20,10 +21,11 @@ const ControlsWrapper = styled.section`
   margin: auto;
 `;
 
-const ControlsButton = styled.button`
+const ControlsButton = styled(Button)`
   background-color: white;
   padding: 10px;
   cursor: pointer;
   border: 2px solid black;
   font-size: 24px;
+  text-transform: capitalize;
 `;
