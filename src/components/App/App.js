@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import GlobalStyle from '../../styles/globalStyles';
+import Controls from '../Controls/Controls';
 import Header from '../Header/Header';
 import Pomodoro from '../Pomodoro/Pomodoro';
 
@@ -11,6 +12,7 @@ function App() {
         <GlobalStyle />
         <Header />
         <Pomodoro />
+        <Controls />
       </AppContainer>
     </Wrapper>
   );
