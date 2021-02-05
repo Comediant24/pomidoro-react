@@ -133,6 +133,11 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+
+  @media screen and (max-width: 500px) {
+    gap: 50px;
+    padding: 20px 10px;
+  }
 `;
 
 const BackgroundMask = styled.div`

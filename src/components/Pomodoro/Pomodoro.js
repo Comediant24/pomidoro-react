@@ -28,12 +28,23 @@ const PomodoroWrapper = styled.section`
   display: flex;
   gap: 20px;
   justify-content: center;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    gap: 0;
+  }
 `;
 
 const EditButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: row;
+    order: 1;
+    gap: 30px;
+  }
 `;
 
 const EditButton = styled(Button)`
@@ -44,6 +55,11 @@ const EditButton = styled(Button)`
   color: white;
   font-weight: bold;
   cursor: pointer;
+
+  @media screen and (max-width: 500px) {
+    font-size: 70px;
+    line-height: 1;
+  }
 `;
 
 const Timer = styled.div`
@@ -51,4 +67,9 @@ const Timer = styled.div`
   font-size: 120px;
   font-weight: bold;
   text-align: center;
+
+  @media screen and (max-width: 400px) {
+    font-size: 98px;
+    line-height: 1;
+  }
 `;

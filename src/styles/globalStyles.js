@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family:  'Share Tech Mono', 'Courier New', monospace;
+    min-width: 320px;
   }
 `;
 

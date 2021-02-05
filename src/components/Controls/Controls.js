@@ -42,7 +42,12 @@ export default Controls;
 const ControlsWrapper = styled.section`
   display: flex;
   gap: 15px;
-  margin: auto;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 const ControlsButton = styled(Button)`
@@ -53,4 +58,9 @@ const ControlsButton = styled(Button)`
   font-size: 24px;
   text-transform: capitalize;
   min-width: 100px;
+  width: 100%;
+
+  @media screen and (max-width: 500px) {
+    max-width: 300px;
+  }
 `;
