@@ -1,2 +1,10 @@
 export const CURRENT_TIME = 25;
-export const TITLE_BUTTON = ['start', 'break', 'reset', 'edit'];
+export const BREAK_TIME = 5;
+export const TITLE_BUTTON = [
+  'start',
+  'pause',
+  'reset',
+  'edit',
+  'save',
+  'break',
+];

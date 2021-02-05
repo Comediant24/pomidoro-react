@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import GlobalStyle from '../../styles/globalStyles';
 import Controls from '../Controls/Controls';
@@ -10,7 +10,11 @@ function App() {
   const [currentTime, setCurrentTime] = useState(CURRENT_TIME);
   const [timeLeft, setTimeLeft] = useState(currentTime * 60);
   const [isRunning, setIsRunning] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+
   let intervalRef = useRef(null);
+
+  useEffect(() => setTimeLeft(currentTime * 60), [currentTime]);
 
   const padTime = (time) => {
     return Math.floor(time).toString().padStart(2, '0');
@@ -22,6 +26,7 @@ function App() {
 
   const toStartTimer = () => {
     if (intervalRef.current !== null) return;
+    setIsEdit(false);
     setIsRunning(true);
     intervalRef.current = setInterval(
       () =>
@@ -48,17 +53,39 @@ function App() {
     intervalRef.current = null;
   };
 
+  const handleShowEditButton = () => {
+    setIsEdit(!isEdit);
+  };
+
+  const handleTimeEditSubtract = () => {
+    if (currentTime <= 1) return;
+    setCurrentTime(currentTime - 1);
+  };
+
+  const handleTimeEditAdd = () => {
+    if (currentTime >= 60) return;
+    setCurrentTime(currentTime + 1);
+  };
+
   return (
     <Wrapper>
       <AppContainer>
         <GlobalStyle />
         <Header />
-        <Pomodoro minutes={minutes} seconds={seconds} />
+        <Pomodoro
+          handleHiddenButtonEdit={isEdit}
+          handleTimeEditSubtract={handleTimeEditSubtract}
+          handleTimeEditAdd={handleTimeEditAdd}
+          minutes={minutes}
+          seconds={seconds}
+        />
         <Controls
           isRunning={isRunning}
           onStartClick={toStartTimer}
           onResetClick={toResetTime}
           onPauseClick={toPauseTime}
+          isEdit={isEdit}
+          handleShowEditButton={handleShowEditButton}
         />
       </AppContainer>
     </Wrapper>
