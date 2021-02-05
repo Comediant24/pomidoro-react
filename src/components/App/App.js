@@ -39,35 +39,37 @@ function App() {
       1000
     );
   };
+  const resetRunningState = () => {
+    setIsRunning(false);
+    intervalRef.current = null;
+  };
 
   const toPauseTime = () => {
     if (intervalRef.current === null) return;
     clearInterval(intervalRef.current);
-    setIsRunning(false);
-    intervalRef.current = null;
+    resetRunningState();
   };
 
   const toBreakTime = () => {
     clearInterval(intervalRef.current);
     setTimeLeft(BREAK_TIME * 60);
-    setIsRunning(false);
+    setCurrentTime(BREAK_TIME);
     setIsBreak(true);
-    intervalRef.current = null;
+    resetRunningState();
   };
 
-  const setFocusTime = (params) => {
+  const setFocusTime = () => {
     clearInterval(intervalRef.current);
     setTimeLeft(currentTime * 60);
+    setCurrentTime(CURRENT_TIME);
     setIsBreak(false);
-    setIsRunning(false);
-    intervalRef.current = null;
+    resetRunningState();
   };
 
   const toResetTime = () => {
     clearInterval(intervalRef.current);
     setTimeLeft(currentTime * 60);
-    setIsRunning(false);
-    intervalRef.current = null;
+    resetRunningState();
   };
 
   const handleShowEditButton = () => {
@@ -108,6 +110,12 @@ function App() {
           handleShowEditButton={handleShowEditButton}
         />
       </AppContainer>
+      <BackgroundMask
+        style={{
+          clipPath: `circle(${(timeLeft / currentTime / 60) * 142}% at 0 0)`,
+        }}
+      />
+      <Background />
     </Wrapper>
   );
 }
@@ -115,8 +123,7 @@ function App() {
 export default App;
 
 const Wrapper = styled.div`
-  background-color: #fc5650;
-  height: 100vh;
+  position: relative;
 `;
 
 const AppContainer = styled.div`
@@ -126,4 +133,25 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+`;
+
+const BackgroundMask = styled.div`
+  background-color: #fc5650;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: clip-path 1s linear 0s;
+`;
+
+const Background = styled.div`
+  background-color: #13a10e;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
 `;
