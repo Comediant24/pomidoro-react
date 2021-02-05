@@ -4,13 +4,14 @@ import GlobalStyle from '../../styles/globalStyles';
 import Controls from '../Controls/Controls';
 import Header from '../Header/Header';
 import Pomodoro from '../Pomodoro/Pomodoro';
-import { CURRENT_TIME } from '../../config/config';
+import { CURRENT_TIME, BREAK_TIME } from '../../config/config';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(CURRENT_TIME);
   const [timeLeft, setTimeLeft] = useState(currentTime * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isBreak, setIsBreak] = useState(false);
 
   let intervalRef = useRef(null);
 
@@ -42,6 +43,22 @@ function App() {
   const toPauseTime = () => {
     if (intervalRef.current === null) return;
     clearInterval(intervalRef.current);
+    setIsRunning(false);
+    intervalRef.current = null;
+  };
+
+  const toBreakTime = () => {
+    clearInterval(intervalRef.current);
+    setTimeLeft(BREAK_TIME * 60);
+    setIsRunning(false);
+    setIsBreak(true);
+    intervalRef.current = null;
+  };
+
+  const setFocusTime = (params) => {
+    clearInterval(intervalRef.current);
+    setTimeLeft(currentTime * 60);
+    setIsBreak(false);
     setIsRunning(false);
     intervalRef.current = null;
   };
@@ -84,7 +101,10 @@ function App() {
           onStartClick={toStartTimer}
           onResetClick={toResetTime}
           onPauseClick={toPauseTime}
+          onBreakClick={toBreakTime}
+          setFocusTime={setFocusTime}
           isEdit={isEdit}
+          isBreak={isBreak}
           handleShowEditButton={handleShowEditButton}
         />
       </AppContainer>

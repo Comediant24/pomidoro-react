@@ -7,4 +7,5 @@ export const TITLE_BUTTON = [
   'edit',
   'save',
   'break',
+  'focus',
 ];

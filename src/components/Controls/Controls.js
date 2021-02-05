@@ -9,8 +9,10 @@ const Controls = ({
   onResetClick,
   onPauseClick,
   onBreakClick,
+  setFocusTime,
   handleShowEditButton,
   isEdit,
+  isBreak,
 }) => {
   return (
     <ControlsWrapper>
@@ -21,7 +23,12 @@ const Controls = ({
         <ControlsButton onButtonClick={onPauseClick} title={TITLE_BUTTON[1]} />
       )}
       <ControlsButton onButtonClick={onResetClick} title={TITLE_BUTTON[2]} />
-      <ControlsButton onButtonClick={onBreakClick} title={TITLE_BUTTON[5]} />
+      {!isBreak && (
+        <ControlsButton onButtonClick={onBreakClick} title={TITLE_BUTTON[5]} />
+      )}
+      {isBreak && (
+        <ControlsButton onButtonClick={setFocusTime} title={TITLE_BUTTON[6]} />
+      )}
       <ControlsButton
         onButtonClick={handleShowEditButton}
         title={isEdit ? TITLE_BUTTON[4] : TITLE_BUTTON[3]}
