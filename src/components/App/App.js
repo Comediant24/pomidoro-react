@@ -16,6 +16,11 @@ function App() {
   let intervalRef = useRef(null);
 
   useEffect(() => setTimeLeft(currentTime * 60), [currentTime]);
+  useEffect(() => {
+    if (timeLeft === 0) {
+      window.navigator.vibrate([400, 200, 400]);
+    }
+  }, [timeLeft]);
 
   const padTime = (time) => {
     return Math.floor(time).toString().padStart(2, '0');
