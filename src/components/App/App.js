@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import GlobalStyle from '../../styles/globalStyles';
 import Controls from '../Controls/Controls';
 import Header from '../Header/Header';
