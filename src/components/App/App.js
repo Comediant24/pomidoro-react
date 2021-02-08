@@ -124,6 +124,7 @@ export default App;
 
 const Wrapper = styled.div`
   position: relative;
+  height: 100vh;
 `;
 
 const AppContainer = styled.div`
@@ -135,8 +136,11 @@ const AppContainer = styled.div`
   gap: 30px;
 
   @media screen and (max-width: 500px) {
-    gap: 50px;
     padding: 20px 10px;
+    box-sizing: border-box;
+    height: 100%;
+    justify-content: space-between;
+    gap: 10px;
   }
 `;
 
